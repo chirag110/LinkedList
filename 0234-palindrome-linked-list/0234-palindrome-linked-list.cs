@@ -21,41 +21,81 @@
 // Time Complexity: O(n), where n is the number of nodes in the linked list. We traverse the list a few times (to find the middle, to reverse the second half, and to compare).
 // Space Complexity: O(1), since we only use a few pointers and do not require additional data structures.
 
+// public class Solution {
+//     public bool IsPalindrome(ListNode head) {
+//         if (head == null || head.next == null) return true;
+        
+//         // Step 1: Find the middle of the linked list
+//         ListNode slow = head, fast = head;
+//         while (fast != null && fast.next != null) {
+//             slow = slow.next;
+//             fast = fast.next.next;
+//         }
+        
+//         // Step 2: Reverse the second half of the linked list
+//         ListNode secondHalfStart = ReverseList(slow);
+
+//         // Step 3: Compare the first and second halves
+//         ListNode firstHalfStart = head;
+//         while (secondHalfStart != null) {
+//             if (firstHalfStart.val != secondHalfStart.val) {
+//                 return false;
+//             }
+//             firstHalfStart = firstHalfStart.next;
+//             secondHalfStart = secondHalfStart.next;
+//         }
+
+//         return true;
+//     }
+
+//     private ListNode ReverseList(ListNode head) {
+//         ListNode prev = null, current = head, next = null;
+//         while (current != null) {
+//             next = current.next;
+//             current.next = prev;
+//             prev = current;
+//             current = next;
+//         }
+//         return prev;
+//     }
+// }
+
+
+
+
+
+//Approach 2
+
+// Using a Stack
+// Explanation
+// Traverse the linked list and push the values of each node onto a stack.
+// Traverse the linked list again and pop elements from the stack. Compare the popped value with the current node value.
+// If all values match, then the linked list is a palindrome.
+
+
+using System.Collections.Generic;
+
 public class Solution {
     public bool IsPalindrome(ListNode head) {
         if (head == null || head.next == null) return true;
-        
-        // Step 1: Find the middle of the linked list
-        ListNode slow = head, fast = head;
-        while (fast != null && fast.next != null) {
-            slow = slow.next;
-            fast = fast.next.next;
-        }
-        
-        // Step 2: Reverse the second half of the linked list
-        ListNode secondHalfStart = ReverseList(slow);
 
-        // Step 3: Compare the first and second halves
-        ListNode firstHalfStart = head;
-        while (secondHalfStart != null) {
-            if (firstHalfStart.val != secondHalfStart.val) {
+        // Step 1: Push all values onto a stack
+        Stack<int> stack = new Stack<int>();
+        ListNode current = head;
+        while (current != null) {
+            stack.Push(current.val);
+            current = current.next;
+        }
+
+        // Step 2: Compare values while popping from the stack
+        current = head;
+        while (current != null) {
+            if (current.val != stack.Pop()) {
                 return false;
             }
-            firstHalfStart = firstHalfStart.next;
-            secondHalfStart = secondHalfStart.next;
+            current = current.next;
         }
 
         return true;
-    }
-
-    private ListNode ReverseList(ListNode head) {
-        ListNode prev = null, current = head, next = null;
-        while (current != null) {
-            next = current.next;
-            current.next = prev;
-            prev = current;
-            current = next;
-        }
-        return prev;
     }
 }
