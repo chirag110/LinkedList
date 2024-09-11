@@ -72,6 +72,10 @@ public class Solution {
 // Traverse the linked list again and pop elements from the stack. Compare the popped value with the current node value.
 // If all values match, then the linked list is a palindrome.
 
+// Time and Space Complexity
+// Time Complexity: O(n), where n is the number of nodes in the linked list. We make two passes through the list.
+// Space Complexity: O(n), due to the stack storing all node values.
+
 
 // using System.Collections.Generic;
 
@@ -99,3 +103,95 @@ public class Solution {
 //         return true;
 //     }
 // }
+
+
+
+
+
+
+
+// Approach 3
+//     . Using a Fast and Slow Pointer with a List
+// Explanation
+// Use two pointers (slow and fast) to traverse the linked list.
+// Push the slow pointer values to a list.
+// When the fast pointer reaches the end, the slow pointer will be at the middle.
+// Continue moving the slow pointer while popping values from the list and comparing them to check if the list is a palindrome.
+
+
+// Time and Space Complexity
+// Time Complexity: O(n), where n is the number of nodes in the linked list. We traverse the list twice.
+// Space Complexity: O(n), due to the list storing half of the node values.
+
+
+
+
+
+// using System.Collections.Generic;
+
+// public class Solution {
+//     public bool IsPalindrome(ListNode head) {
+//         if (head == null || head.next == null) return true;
+
+//         List<int> vals = new List<int>();
+//         ListNode slow = head, fast = head;
+
+//         // Step 1: Push first half of the values to the list
+//         while (fast != null && fast.next != null) {
+//             vals.Add(slow.val);
+//             slow = slow.next;
+//             fast = fast.next.next;
+//         }
+
+//         // If the list has odd number of elements, skip the middle element
+//         if (fast != null) {
+//             slow = slow.next;
+//         }
+
+//         // Step 2: Compare the values in reverse order
+//         for (int i = vals.Count - 1; i >= 0; i--) {
+//             if (vals[i] != slow.val) {
+//                 return false;
+//             }
+//             slow = slow.next;
+//         }
+
+//         return true;
+//     }
+// }
+
+
+
+
+
+//Approach 4
+// Recursive Approach
+// Explanation
+// Use recursion to traverse to the end of the linked list and then check if the values match in reverse order as you return back from the recursive calls.
+
+
+// Time and Space Complexity
+// Time Complexity: O(n), where n is the number of nodes in the linked list. We traverse the list once.
+// Space Complexity: O(n), due to the recursive call stack.
+
+
+
+
+// public class Solution {
+//     private ListNode frontPointer;
+
+//     public bool IsPalindrome(ListNode head) {
+//         frontPointer = head;
+//         return RecursivelyCheck(head);
+//     }
+
+//     private bool RecursivelyCheck(ListNode currentNode) {
+//         if (currentNode == null) return true;
+
+//         bool isPalindrome = RecursivelyCheck(currentNode.next) && (frontPointer.val == currentNode.val);
+
+//         frontPointer = frontPointer.next;
+//         return isPalindrome;
+//     }
+// }
+
