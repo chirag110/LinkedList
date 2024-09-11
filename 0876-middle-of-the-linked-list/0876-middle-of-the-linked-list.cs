@@ -9,17 +9,34 @@
  *     }
  * }
  */
-//Testing again
+
+
+//Approach 1 
+
+//First, traverse the entire linked list to count the total number of nodes, n. Then, traverse the list again up to the middle index, n/2, to find the middle node.
+
+//Time and Space Complexity
+//Time Complexity: O(n), where n is the number of nodes in the linked list. We make two passes through the list.
+//Space Complexity: O(1), since we only use a few variables.
 public class Solution {
     public ListNode MiddleNode(ListNode head) {
-        ListNode slow = head, fast = head;
-        
-        while(fast!=null && fast.next!=null)
-        {
-            slow = slow.next;
-            fast = fast.next.next;
+        int count = 0;
+        ListNode current = head;
+
+        // Count the number of nodes
+        while (current != null) {
+            count++;
+            current = current.next;
         }
-        
-        return slow;
+
+        // Find the middle node
+        int middleIndex = count / 2;
+        current = head;
+
+        for (int i = 0; i < middleIndex; i++) {
+            current = current.next;
+        }
+
+        return current;
     }
 }
