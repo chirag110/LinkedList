@@ -40,3 +40,55 @@ public class Solution {
         return current;
     }
 }
+
+//Approach 2
+//Convert the linked list into an array or list for easy access to the middle element. Then, return the middle element by accessing the index n/2.
+
+//Time and Space Complexity
+//Time Complexity: O(n), where n is the number of nodes in the linked list. We traverse the list once.
+//Space Complexity: O(n), due to the storage required for the array or list.
+
+// using System.Collections.Generic;
+
+// public class Solution {
+//     public ListNode MiddleNode(ListNode head) {
+//         List<ListNode> nodes = new List<ListNode>();
+//         ListNode current = head;
+
+//         while (current != null) {
+//             nodes.Add(current);
+//             current = current.next;
+//         }
+
+//         return nodes[nodes.Count / 2];
+//     }
+// }
+
+
+
+
+
+
+//Approach 3 
+
+
+// We use two pointers, slow and fast. Both start at the head of the linked list. The slow pointer moves one step at a time, while the fast pointer moves two steps at a time. By the time the fast pointer reaches the end of the linked list, the slow pointer will be at the middle.
+
+// Time and Space Complexity
+// Time Complexity: O(n), where n is the number of nodes in the linked list. We traverse the list once.
+// Space Complexity: O(1), since we are only using two pointers.
+
+// public class Solution {
+//     public ListNode MiddleNode(ListNode head) {
+//         ListNode slow = head;
+//         ListNode fast = head;
+        
+//         while (fast != null && fast.next != null) {
+//             slow = slow.next;
+//             fast = fast.next.next;
+//         }
+        
+//         return slow;
+//     }
+// }
+
