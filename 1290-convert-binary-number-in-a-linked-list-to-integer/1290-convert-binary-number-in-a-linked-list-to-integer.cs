@@ -36,3 +36,8 @@ public class Solution {
     }
 }
 
+//-------------------------------------------------------------------------------------------------------------------------
+//Approach 2
+
+// Convert Binary to String and Then to Integer
+// Another approach is to traverse the linked list, collect the binary digits as a string, and then convert that string to an integer using C#'s built-in Convert.ToInt32 method.
